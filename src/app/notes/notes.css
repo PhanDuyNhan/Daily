@@ -1,0 +1,100 @@
+.mobile-notes-link, .topbar .mobile-logout { display: none; }
+
+.notes-nav, .notes-nav a, .notes-nav span, .notes-quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.notes-nav { gap: 8px; }
+.notes-nav a, .notes-nav span, .notes-quiet {
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 9px;
+  color: #496457;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.notes-nav [aria-current], .notes-nav a:hover, .notes-quiet:hover { background: #e6eee8; color: var(--ink); }
+.notes-grid {
+  display: grid;
+  grid-template-columns: minmax(170px, 220px) minmax(190px, 270px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.notes-card {
+  min-width: 0;
+  min-height: 410px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.notes-section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.notes-section-head h2 { min-width: 0; overflow-wrap: anywhere; font-size: 15px; font-weight: 700; }
+.notes-list { display: grid; gap: 4px; margin-top: 10px; }
+.notes-list button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.notes-list button svg { flex: none; color: #547c66; }
+.notes-list button:hover, .notes-list button[aria-pressed=true] { background: #e6eee8; }
+.notes-new { min-height: 44px; }
+.notes-editor { min-height: 490px; padding: 22px; }
+.notes-editor-empty { min-height: 440px; display: grid; place-content: center; justify-items: center; gap: 12px; text-align: center; color: #607468; font-size: 13px; }
+.notes-form, .notes-folder-form { display: grid; gap: 16px; }
+.notes-folder-form { padding: 12px; background: #f3f5ee; border-radius: 8px; }
+.notes-form .field input, .notes-form .field textarea, .notes-folder-form .field input { font-size: 16px; line-height: 1.5; }
+.notes-form textarea { min-height: 240px; }
+.note-links { display: grid; gap: 6px; font-size: 12px; }
+.note-links h3 { font-weight: 700; }
+.note-links a { display: inline-block; padding: 5px 0; color: #2e704e; text-decoration: underline; overflow-wrap: anywhere; }
+.day-panel + .calendar-card { margin-top: 23px; }
+.filter-indicator.dueSoon { background: var(--orange); border: 0; }
+.notes-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; align-items: center; }
+.notes-status, .notes-hint { color: #607468; font-size: 12px; }
+.notes-hint { margin-top: 12px; }
+.notes-search { margin-bottom: 12px; }
+.auth-settings { display: grid; justify-items: start; gap: 16px; max-width: 600px; min-height: 0; padding: 24px; }
+.auth-settings h1, .auth-settings h2 { font-size: 18px; font-weight: 700; }
+.auth-settings p { color: #496457; }
+.auth-settings a { color: #2e704e; text-decoration: underline; }
+.task-dialog { position: fixed; inset: 0; margin: auto; padding: 0; border: 0; color: var(--ink); }
+.task-dialog::backdrop { background: #15251fc4; }
+.settings-link { min-width: 36px; min-height: 36px; }
+.notes-error { color: #9e4732; font-size: 12px; }
+.more-button { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
+
+@media (max-width: 900px) {
+  .notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .notes-card { min-height: 0; }
+  .notes-editor { grid-column: 1 / -1; }
+  .notes-editor-empty { min-height: 100px; }
+}
+
+@media (max-width: 700px) {
+  .settings-link { min-width: 44px; min-height: 44px; }
+  .mobile-notes-link, .topbar .mobile-logout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 44px;
+  }
+  .topbar .mobile-logout { min-width: 44px; }
+  .topbar .breadcrumb { display: none; }
+  .topbar-left > svg { display: none; }
+  .notes-grid { grid-template-columns: minmax(0, 1fr); }
+  .notes-editor { display: none; }
+  .notes-grid.has-draft .notes-editor { display: block; padding: 16px; }
+  .notes-grid.has-draft .notes-folders, .notes-grid.has-draft .notes-index { display: none; }
+}

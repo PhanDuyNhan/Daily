@@ -1,0 +1,20 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-11-18T03:00:00Z" },
+  "lists": "css",
+  "title": "Daily — Personal Task Planner UI",
+  "order": ["direction", "calendar", "mobile", "notes"],
+  "cover": "direction",
+  "sections": {
+    "concept": { "description": "Visual direction for a calm personal planner", "start": "direction" },
+    "screens": { "description": "Calendar screens and interactions", "start": "calendar" },
+    "writing": { "description": "Folders and notes workspace", "start": "notes" }
+  },
+  "faces": {
+    "be-vietnam-pro": {
+      "family": "Be Vietnam Pro",
+      "href": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+    }
+  },
+  "designSystems": []
+}
