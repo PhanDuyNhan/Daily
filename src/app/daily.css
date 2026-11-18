@@ -161,6 +161,12 @@
 .account-card p { color: var(--muted); font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
 .account-card .auth-form { width: 100%; }
 .account-card .auth-form label { overflow-wrap: anywhere; }
+.task-reminder-card { grid-column: 1 / -1; }
+.reminder-switch { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; color: var(--ink); font-size: 13px; font-weight: 600; }
+.reminder-switch-track { display: grid; align-items: center; width: 42px; height: 24px; padding: 3px; border-radius: 99px; background: #6d8174; }
+.reminder-switch-track::after { content: ''; width: 18px; height: 18px; border-radius: 50%; background: #fffefa; }
+.reminder-switch[aria-checked=true] .reminder-switch-track { background: #315a43; }
+.reminder-switch[aria-checked=true] .reminder-switch-track::after { justify-self: end; }
 .account-card:last-child:nth-child(3) { grid-column: 1 / -1; }
 .account-danger { border-color: #ead1c6; }
 .account-danger .feature-icon { background: #f6e8e1; color: #943f2d; }

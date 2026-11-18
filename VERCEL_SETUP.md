@@ -1,5 +1,7 @@
 # Đưa Daily lên Vercel
 
+Để gửi nhắc hạn tự động, làm thêm [hướng dẫn email nhắc hạn](TASK_REMINDER_SETUP.md).
+
 ## 1. Cập nhật Supabase
 
 1. Mở đúng project **Daily → SQL Editor**. Các bảng `tasks`, `note_folders` và `notes` đã có thì giữ nguyên.
@@ -8,7 +10,7 @@
 4. Mở **Security Advisor**. Xác nhận RLS đang bật trên cả ba bảng. Trong **Authentication → Sign In / Providers**, kiểm tra Email và Google đang bật. Bật xác nhận email nếu cho phép đăng ký.
 5. Mở **Connect** và lấy **Project URL** cùng **publishable key**. Client Secret của Google nằm trong cấu hình Google provider trên Supabase.
 
-Với Supabase mới hoàn toàn, chạy các file trong [`supabase/migrations`](supabase/migrations/) theo số từ 001 đến 004.
+Với Supabase mới hoàn toàn, chạy các file trong [`supabase/migrations`](supabase/migrations/) theo thứ tự.
 
 ## 2. Import repository vào Vercel
 

@@ -47,3 +47,4 @@ jobs:
             psql -X -v ON_ERROR_STOP=1 -f "$migration"
           done
           psql -X -v ON_ERROR_STOP=1 -f supabase/tests/ownership.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/tests/task_reminders.sql

@@ -18,7 +18,7 @@ Mở `http://localhost:3000`. Không cần Supabase để thử lịch và CRUD 
 ## Kết nối Supabase
 
 1. Tạo một Supabase project.
-2. Với project trống, mở SQL Editor và chạy từng file trong [`supabase/migrations`](supabase/migrations/) theo thứ tự 001 đến 004. Với project đã dùng Daily, chỉ chạy các migration còn thiếu.
+2. Với project trống, mở SQL Editor và chạy từng file trong [`supabase/migrations`](supabase/migrations/) theo thứ tự. Với project đã dùng Daily, chỉ chạy các migration còn thiếu.
 3. Sao chép `.env.example` thành `.env.local`, điền:
 
    ```env
@@ -39,6 +39,7 @@ Mở `http://localhost:3000`. Không cần Supabase để thử lịch và CRUD 
 - Cập nhật UI ngay và khôi phục nếu Supabase từ chối ghi.
 - Tab **Ghi chú** có tìm kiếm, liên kết, di chuyển ghi chú và cảnh báo khi hai thiết bị cùng sửa.
 - Trang **Cài đặt và dữ liệu** cho phép xuất JSON và xóa tài khoản theo yêu cầu.
+- [Email nhắc hạn](TASK_REMINDER_SETUP.md) gửi khi công việc chưa hoàn thành và đã đến mốc báo trước, sau khi tài khoản bật nhận email.
 
 Để bật đồng bộ ghi chú cho project Supabase đang dùng, chạy thêm
 [`202611180002_notes.sql`](supabase/migrations/202611180002_notes.sql) trong SQL Editor.

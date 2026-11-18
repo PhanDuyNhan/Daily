@@ -11,6 +11,7 @@ import { readAllPages } from '@/lib/paginate'
 import { getSupabase } from '@/lib/supabase'
 import { taskSchema } from '@/lib/task'
 import { Brand } from '@/components/brand'
+import { TaskReminderSetting } from '@/components/task-reminder-setting'
 
 export function AccountSettings() {
   const user = useAccount()
@@ -82,6 +83,8 @@ export function AccountSettings() {
           <p>Tải công việc, thư mục và ghi chú trong chế độ bạn đang dùng thành file JSON.</p>
           <button type="button" className="primary-button" disabled={busy || user === undefined} onClick={() => void exportData()}><Download size={17} /> Xuất dữ liệu</button>
         </section>
+        {user && <TaskReminderSetting key={user.id} userId={user.id}
+          confirmedEmail={user.email_confirmed_at ? user.email : undefined} />}
         <section className="notes-card account-card">
           <div className="account-card-heading"><span className="feature-icon"><ShieldCheck size={19} /></span><h2>Quyền riêng tư</h2></div>
           <p>Khi đăng nhập, Daily lưu email, công việc và ghi chú trong Supabase. Mỗi tài khoản chỉ truy cập dữ liệu của mình. Dữ liệu khách nằm trên trình duyệt đang dùng.</p>
