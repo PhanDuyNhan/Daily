@@ -46,7 +46,7 @@ export function TaskReminderSetting({ userId, confirmedEmail }: { userId: string
     }
   }
 
-  return <section className="notes-card account-card task-reminder-card" aria-labelledby="task-reminder-title">
+  return <section className="notes-card account-card" aria-labelledby="task-reminder-title">
     <div className="account-card-heading">
       <span className="feature-icon"><Bell size={19} aria-hidden="true" /></span>
       <h2 id="task-reminder-title">Email nhắc hạn</h2>

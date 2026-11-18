@@ -154,22 +154,16 @@
 .feature-icon { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: #e9f0e7; color: #315746; flex: none; }
 
 .account-content { max-width: 960px; }
-.account-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.account-grid { display: grid; gap: 14px; }
 .account-card { display: grid; align-content: start; justify-items: start; gap: 13px; min-height: 0; max-width: none; padding: 21px; }
 .account-card-heading { display: flex; align-items: center; gap: 9px; }
 .account-card h2 { font-size: 16px; font-weight: 700; }
 .account-card p { color: var(--muted); font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
-.account-card .auth-form { width: 100%; }
-.account-card .auth-form label { overflow-wrap: anywhere; }
-.task-reminder-card { grid-column: 1 / -1; }
 .reminder-switch { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; color: var(--ink); font-size: 13px; font-weight: 600; }
 .reminder-switch-track { display: grid; align-items: center; width: 42px; height: 24px; padding: 3px; border-radius: 99px; background: #6d8174; }
 .reminder-switch-track::after { content: ''; width: 18px; height: 18px; border-radius: 50%; background: #fffefa; }
 .reminder-switch[aria-checked=true] .reminder-switch-track { background: #315a43; }
 .reminder-switch[aria-checked=true] .reminder-switch-track::after { justify-self: end; }
-.account-card:last-child:nth-child(3) { grid-column: 1 / -1; }
-.account-danger { border-color: #ead1c6; }
-.account-danger .feature-icon { background: #f6e8e1; color: #943f2d; }
 
 .login-page { grid-template-columns: minmax(295px, .88fr) minmax(0, 1.12fr); min-height: 100dvh; }
 .login-brand {
@@ -195,6 +189,7 @@
 .auth-field { display: grid; gap: 6px; }
 .password-field { position: relative; }
 .password-field input { width: 100%; padding-right: 53px; }
+.password-field input::-ms-reveal { display: none; }
 .password-field .icon-button { position: absolute; right: 5px; top: 4px; }
 .auth-form .primary-button, .google-button { min-height: 46px; }
 .auth-switch { margin-top: 13px; color: var(--muted); font-size: 13px; }
@@ -296,7 +291,7 @@
   }
   .panel-task .task-check.checked::before { background: var(--ink); border-color: var(--ink); }
   .panel-task .task-check svg { position: relative; }
-  .notes-grid, .account-grid { grid-template-columns: minmax(0, 1fr); }
+  .notes-grid { grid-template-columns: minmax(0, 1fr); }
   .notes-brand-link { display: none !important; }
   .notes-quiet { padding-inline: 7px; }
   .field input, .field textarea, .field select, .auth-form input { font-size: 16px; }

@@ -54,11 +54,11 @@ Trong **Supabase → Authentication → URL Configuration**:
 - Tạo một task có số ngày báo trước tùy chỉnh. Mở lại ở tab hoặc thiết bị thứ hai và xác nhận giá trị vẫn còn.
 - Tạo thư mục và ghi chú. Kiểm tra tìm kiếm, chuyển thư mục và mở link. Mở cùng ghi chú ở hai cửa sổ, lưu cửa sổ thứ nhất rồi thử lưu bản cũ ở cửa sổ thứ hai. Daily phải giữ bản nháp và báo xung đột.
 - Đổi sang tài khoản thứ hai. Task và ghi chú của tài khoản đầu tiên không xuất hiện. Mở lại ở cửa sổ ẩn danh để kiểm tra chế độ khách.
-- Mở **Cài đặt và dữ liệu → Xuất dữ liệu**. Kiểm tra JSON có đủ task, thư mục và ghi chú. Với tài khoản kiểm tra có thể bỏ, thử xóa một thư mục và xóa tài khoản.
+- Dùng tài khoản kiểm tra để tạo và xóa một thư mục ghi chú thử.
 - Trên điện thoại, kiểm tra nút chuyển giữa Lịch và Ghi chú, đăng xuất, và thêm Daily vào màn hình chính bằng menu trình duyệt nếu được hỗ trợ.
 
 ## 5. Theo dõi và khôi phục
 
 - Xem **Vercel → Logs** để tìm lỗi build hoặc render. Xem **Supabase → Logs Explorer** để tìm lỗi Auth và Data API theo thời điểm gặp lỗi. Khi chia sẻ thông tin lỗi, dùng đường dẫn, mã trạng thái và thời điểm. Nội dung task, ghi chú, email khôi phục và token cần được giữ riêng.
-- Xác nhận phương thức sao lưu hiện có trong **Supabase → Database → Backups**. Trước thay đổi cơ sở dữ liệu, lưu bản sao và thử khôi phục vào project thử nghiệm. File JSON trong app dùng để giữ bản sao của người dùng. App hiện chưa có chức năng nhập lại file JSON.
+- Xác nhận phương thức sao lưu hiện có trong **Supabase → Database → Backups**. Trước khi thay đổi cơ sở dữ liệu, lưu bản sao và thử khôi phục vào project thử nghiệm.
 - Khi một bản deploy lỗi, dùng deployment ổn định trước đó trong Vercel. Các migration vẫn nằm trong Supabase, nên kiểm tra tính tương thích trước khi quay lui bản web.

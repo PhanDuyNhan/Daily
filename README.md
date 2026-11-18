@@ -38,7 +38,6 @@ Mở `http://localhost:3000`. Không cần Supabase để thử lịch và CRUD 
 - Lọc theo hôm nay, tuần này, gần đến hạn, hoàn thành hoặc danh mục. Sắp xếp theo hạn hoặc ưu tiên.
 - Cập nhật UI ngay và khôi phục nếu Supabase từ chối ghi.
 - Tab **Ghi chú** có tìm kiếm, liên kết, di chuyển ghi chú và cảnh báo khi hai thiết bị cùng sửa.
-- Trang **Cài đặt và dữ liệu** cho phép xuất JSON và xóa tài khoản theo yêu cầu.
 - [Email nhắc hạn](TASK_REMINDER_SETUP.md) gửi khi công việc chưa hoàn thành và đã đến mốc báo trước, sau khi tài khoản bật nhận email.
 
 Để bật đồng bộ ghi chú cho project Supabase đang dùng, chạy thêm

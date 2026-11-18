@@ -64,10 +64,6 @@
 .notes-status, .notes-hint { color: #607468; font-size: 12px; }
 .notes-hint { margin-top: 12px; }
 .notes-search { margin-bottom: 12px; }
-.auth-settings { display: grid; justify-items: start; gap: 16px; max-width: 600px; min-height: 0; padding: 24px; }
-.auth-settings h1, .auth-settings h2 { font-size: 18px; font-weight: 700; }
-.auth-settings p { color: #496457; }
-.auth-settings a { color: #2e704e; text-decoration: underline; }
 .task-dialog { position: fixed; inset: 0; margin: auto; padding: 0; border: 0; color: var(--ink); }
 .task-dialog::backdrop { background: #15251fc4; }
 .settings-link { min-width: 36px; min-height: 36px; }
