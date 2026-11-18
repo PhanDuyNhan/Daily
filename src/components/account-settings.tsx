@@ -3,13 +3,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Download, Trash2 } from 'lucide-react'
+import { ArrowLeft, Download, FileArchive, ShieldCheck, Trash2, UserRound } from 'lucide-react'
 import { z } from 'zod'
 import { useAccount } from '@/hooks/use-account'
 import { loadNotebook } from '@/lib/notes'
 import { readAllPages } from '@/lib/paginate'
 import { getSupabase } from '@/lib/supabase'
 import { taskSchema } from '@/lib/task'
+import { Brand } from '@/components/brand'
 
 export function AccountSettings() {
   const user = useAccount()
@@ -63,29 +64,44 @@ export function AccountSettings() {
     router.replace('/')
   }
 
-  return <main className="content">
-    <div className="page-heading"><h1>Cài đặt và dữ liệu</h1><Link href="/">Về lịch</Link></div>
-    <section className="notes-card auth-settings">
-      <h2>Xuất dữ liệu</h2>
-      <p>Tải công việc, thư mục và ghi chú thành file JSON. File chỉ gồm dữ liệu trong chế độ bạn đang dùng.</p>
-      <button type="button" className="primary-button" disabled={busy || user === undefined} onClick={() => void exportData()}><Download size={17} /> Xuất dữ liệu</button>
-      <h2>Quyền riêng tư</h2>
-      <p>Khi đăng nhập, Daily lưu email, công việc và ghi chú trong Supabase. Mỗi tài khoản chỉ truy cập dữ liệu của mình. Dữ liệu chế độ khách nằm trên trình duyệt đang dùng.</p>
-      {user && <>
-        <h2>Xóa tài khoản</h2>
-        <p>Xóa vĩnh viễn tài khoản Daily, công việc, thư mục và ghi chú đã đồng bộ. Bạn có thể xuất dữ liệu trước.</p>
-        {!showDelete && <button className="delete-button" type="button" onClick={() => setShowDelete(true)}><Trash2 size={15} /> Xóa tài khoản</button>}
-        {showDelete && <form className="auth-form" onSubmit={deleteAccount}>
-          <label>Nhập {confirmationText} để xác nhận
-            <input value={confirmation} onChange={(event) => setConfirmation(event.target.value)} autoComplete="off" required />
-          </label>
-          <div className="notes-actions">
-            <button type="button" className="notes-quiet" disabled={busy} onClick={() => { setShowDelete(false); setConfirmation('') }}>Hủy</button>
-            <button className="delete-button" disabled={busy || confirmation !== confirmationText}>Xóa vĩnh viễn</button>
-          </div>
-        </form>}
-      </>}
-      {message && <p role="status">{message}</p>}
-    </section>
+  return <main className="account-workspace">
+    <header className="topbar account-topbar">
+      <Link href="/" aria-label="Daily, về lịch"><Brand /></Link>
+      <Link href="/" className="notes-quiet"><ArrowLeft size={17} /> Về lịch</Link>
+    </header>
+    <div className="content account-content">
+      <div className="page-heading"><h1>Cài đặt và dữ liệu</h1></div>
+      <div className="account-grid">
+        <section className="notes-card account-card">
+          <div className="account-card-heading"><span className="feature-icon"><UserRound size={19} /></span><h2>Tài khoản</h2></div>
+          <p>{user === undefined ? 'Đang kiểm tra phiên…' : user ? user.email ?? 'Đã đăng nhập' : 'Bạn đang ở chế độ khách.'}</p>
+          {user === null && <Link href="/login" className="notes-quiet">Đăng nhập</Link>}
+        </section>
+        <section className="notes-card account-card auth-settings">
+          <div className="account-card-heading"><span className="feature-icon"><FileArchive size={19} /></span><h2>Xuất dữ liệu</h2></div>
+          <p>Tải công việc, thư mục và ghi chú trong chế độ bạn đang dùng thành file JSON.</p>
+          <button type="button" className="primary-button" disabled={busy || user === undefined} onClick={() => void exportData()}><Download size={17} /> Xuất dữ liệu</button>
+        </section>
+        <section className="notes-card account-card">
+          <div className="account-card-heading"><span className="feature-icon"><ShieldCheck size={19} /></span><h2>Quyền riêng tư</h2></div>
+          <p>Khi đăng nhập, Daily lưu email, công việc và ghi chú trong Supabase. Mỗi tài khoản chỉ truy cập dữ liệu của mình. Dữ liệu khách nằm trên trình duyệt đang dùng.</p>
+        </section>
+        {user && <section className="notes-card account-card account-danger">
+          <div className="account-card-heading"><span className="feature-icon"><Trash2 size={19} /></span><h2>Xóa tài khoản</h2></div>
+          <p>Thao tác này xóa vĩnh viễn tài khoản và dữ liệu đã đồng bộ. Bạn có thể xuất dữ liệu trước.</p>
+          {!showDelete && <button className="delete-button" type="button" onClick={() => setShowDelete(true)}>Xóa tài khoản</button>}
+          {showDelete && <form className="auth-form" onSubmit={deleteAccount}>
+            <label>Nhập {confirmationText} để xác nhận
+              <input value={confirmation} onChange={(event) => setConfirmation(event.target.value)} autoComplete="off" required />
+            </label>
+            <div className="notes-actions">
+              <button type="button" className="notes-quiet" disabled={busy} onClick={() => { setShowDelete(false); setConfirmation('') }}>Hủy</button>
+              <button className="delete-button" disabled={busy || confirmation !== confirmationText}>Xóa vĩnh viễn</button>
+            </div>
+          </form>}
+        </section>}
+      </div>
+      {message && <p className="auth-message" role="status">{message}</p>}
+    </div>
   </main>
 }

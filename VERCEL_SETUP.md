@@ -42,6 +42,7 @@ Trong **Supabase → Authentication → URL Configuration**:
 3. Nếu cần đăng nhập trên Preview, thêm đúng URL gốc của Preview và đường dẫn `/reset-password` tương ứng. Trong Google Cloud, thêm origin production và origin Preview cần dùng. **Authorized redirect URI** của Google vẫn là **Callback URL** hiển thị trong Google provider của Supabase.
 4. Mở **Authentication → Email Templates**. Nếu template đã được tùy chỉnh, kiểm tra nút xác nhận và đặt lại mật khẩu trỏ đến `{{ .ConfirmationURL }}`.
 5. Nếu mời thêm người dùng, cấu hình **Authentication → Emails → SMTP Settings**, kiểm tra giới hạn gửi và test email xác nhận cũng như đặt lại mật khẩu từ hộp thư thật. Rà **Authentication → Rate Limits** và cấu hình CAPTCHA hoặc giới hạn đối tượng đăng ký nếu dự án bắt đầu nhận spam.
+6. Cài nội dung email xác nhận và đặt lại mật khẩu theo [hướng dẫn mẫu email Daily](supabase/email-templates/README.md).
 
 [URL chuyển hướng Supabase](https://supabase.com/docs/guides/auth/redirect-urls) · [Google OAuth](https://supabase.com/docs/guides/auth/social-sign-in/auth-google) · [Chuẩn bị production](https://supabase.com/docs/guides/deployment/going-into-prod)
 

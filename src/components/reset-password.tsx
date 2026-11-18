@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getSupabase } from '@/lib/supabase'
+import { AuthShell } from '@/components/auth-shell'
 
 export function ResetPassword() {
   const router = useRouter()
@@ -56,18 +57,17 @@ export function ResetPassword() {
     router.replace(logout.error ? '/' : '/login?reset=success')
   }
 
-  return <main className="content">
-    <section className="notes-card auth-settings">
+  return <AuthShell>
       <h1>Đặt lại mật khẩu</h1>
-      {message && <p role="status">{message}</p>}
+      {message && <p className="auth-message" role="status">{message}</p>}
       {ready && <form className="auth-form" onSubmit={submit}>
+        <p className="auth-description">Nhập mật khẩu mới có ít nhất 8 ký tự.</p>
         <label>Mật khẩu mới<input type="password" required minLength={8} autoComplete="new-password"
           value={password} onChange={(event) => setPassword(event.target.value)} /></label>
         <label>Nhập lại mật khẩu<input type="password" required minLength={8} autoComplete="new-password"
           value={confirm} onChange={(event) => setConfirm(event.target.value)} /></label>
         <button className="primary-button" disabled={busy}>{busy ? 'Đang lưu…' : 'Lưu mật khẩu mới'}</button>
       </form>}
-      <Link href="/login">Về trang đăng nhập</Link>
-    </section>
-  </main>
+      <p className="auth-switch"><Link href="/login">Về trang đăng nhập</Link></p>
+  </AuthShell>
 }

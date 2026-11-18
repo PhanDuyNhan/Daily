@@ -2,11 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, CalendarDays, FileText, FolderOpen, FolderPlus, LoaderCircle, LogOut, Pencil, Plus, Settings, Trash2 } from 'lucide-react'
+import { ArrowLeft, CalendarDays, FileText, FolderOpen, FolderPlus, LoaderCircle, LogIn, LogOut, Pencil, Plus, Settings, Trash2 } from 'lucide-react'
 import { useAccount } from '@/hooks/use-account'
 import { emptyNotebook, importGuestNotebook, loadNotebook, NoteConflict, readLocalNotebook, updateNotebook, type Note } from '@/lib/notes'
 import { getSupabase } from '@/lib/supabase'
 import { noteLinks } from '@/lib/note-links'
+import { Brand } from '@/components/brand'
 
 const dateFormat = new Intl.DateTimeFormat('vi', { dateStyle: 'short', timeStyle: 'short' })
 
@@ -201,18 +202,23 @@ function Notebook({ userId }: { userId?: string }) {
   return <main className="workspace notes-workspace">
     <header className="topbar">
       <nav className="notes-nav" aria-label="Không gian của bạn">
+        <Link className="notes-brand-link" href="/" aria-label="Daily, về lịch" onClick={(event) => { if (busy || !canLeave()) event.preventDefault() }}><Brand /></Link>
         <Link href="/" onClick={(event) => { if (busy || !canLeave()) event.preventDefault() }}><CalendarDays size={18} /> Lịch</Link>
         <span aria-current="page"><FileText size={18} /> Ghi chú</span>
       </nav>
-      <div className="notes-nav">
+      <div className="notes-nav notes-account-actions">
         <Link href="/account" aria-label="Cài đặt và dữ liệu" onClick={(event) => { if (busy || !canLeave()) event.preventDefault() }}><Settings size={18} /></Link>
         {userId
-          ? <button className="notes-quiet" type="button" onClick={() => void signOut()} disabled={busy}><LogOut size={17} /> Đăng xuất</button>
-          : <Link href="/login" className="notes-quiet" onClick={(event) => { if (busy || !canLeave()) event.preventDefault() }}>Đăng nhập</Link>}
+          ? <button className="notes-quiet notes-auth-action" type="button" aria-label="Đăng xuất" title="Đăng xuất"
+              onClick={() => void signOut()} disabled={busy}><LogOut size={17} /><span>Đăng xuất</span></button>
+          : <Link href="/login" className="notes-quiet notes-auth-action" aria-label="Đăng nhập" title="Đăng nhập"
+              onClick={(event) => { if (busy || !canLeave()) event.preventDefault() }}><LogIn size={17} /><span>Đăng nhập</span></Link>}
       </div>
     </header>
     <div className="content notes-content">
-      <div className="page-heading"><h1>Ghi chú<span className="heading-dot">.</span></h1></div>
+      <div className="page-heading">
+        <div><h1>Ghi chú<span className="heading-dot">.</span></h1><p className="page-subtitle">Tìm và sắp xếp ghi chú theo thư mục.</p></div>
+      </div>
       {!userId && <p className="guest-banner">Chế độ khách · Ghi chú được lưu trên trình duyệt này.</p>}
       {userId && guestAvailable && <div className="guest-banner">
         <span>Có thư mục hoặc ghi chú khách trên thiết bị này.</span>
@@ -265,7 +271,11 @@ function Notebook({ userId }: { userId?: string }) {
             onChange={(event) => setSearch(event.target.value)} placeholder="Tên hoặc nội dung" /></label>
           {folder && <button className="notes-new primary-button" type="button" disabled={busy} onClick={addNote}><Plus size={17} /> Ghi chú mới</button>}
           {notes.length ? <ul className="notes-list">{notes.map((note) => <li key={note.id}>
-            <button type="button" aria-pressed={draft?.id === note.id} disabled={busy} onClick={() => openDraft(note)}><FileText size={17} /><span>{note.title}</span></button>
+            <button type="button" aria-pressed={draft?.id === note.id} disabled={busy} onClick={() => openDraft(note)}>
+              <FileText size={17} /><span className="note-list-copy"><strong>{note.title}</strong>
+                <small>{query ? data.folders.find(({ id }) => id === note.folder_id)?.name : dateFormat.format(new Date(note.updated_at))}</small>
+              </span>
+            </button>
           </li>)}</ul> : <p className="notes-hint">{query ? 'Không có ghi chú phù hợp.' : folder ? 'Thư mục này chưa có ghi chú.' : 'Tạo hoặc chọn một thư mục để bắt đầu.'}</p>}
         </section>
         <section className="notes-card notes-editor" aria-label="Soạn ghi chú">
@@ -296,7 +306,11 @@ function Notebook({ userId }: { userId?: string }) {
               }}>Xóa ghi chú</button>}
               <button className="primary-button" disabled={busy || conflict || !draft.title.trim() || (!dirty && Boolean(original))}>Lưu ghi chú</button>
             </div>
-          </form> : <div className="notes-editor-empty"><FileText size={28} /><p>Chọn một ghi chú để đọc hoặc viết ghi chú mới.</p></div>}
+          </form> : <div className="notes-editor-empty">
+            <span className="feature-icon"><FileText size={25} /></span>
+            <strong>{folder ? 'Mở một ghi chú' : 'Sổ ghi chú của bạn'}</strong>
+            <p>{folder ? 'Chọn một ghi chú trong danh sách hoặc tạo ghi chú mới.' : 'Tạo thư mục để bắt đầu sắp xếp ghi chú.'}</p>
+          </div>}
         </section>
       </div>}
     </div>

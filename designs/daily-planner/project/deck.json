@@ -3,12 +3,13 @@
   "createdOnFiles": { "v": 1, "at": "2026-11-18T03:00:00Z" },
   "lists": "css",
   "title": "Daily — Personal Task Planner UI",
-  "order": ["direction", "calendar", "mobile", "notes"],
+  "order": ["direction", "calendar", "mobile", "notes", "account"],
   "cover": "direction",
   "sections": {
     "concept": { "description": "Visual direction for a calm personal planner", "start": "direction" },
     "screens": { "description": "Calendar screens and interactions", "start": "calendar" },
-    "writing": { "description": "Folders and notes workspace", "start": "notes" }
+    "writing": { "description": "Folders and notes workspace", "start": "notes" },
+    "account": { "description": "Sign-in and email identity", "start": "account" }
   },
   "faces": {
     "be-vietnam-pro": {

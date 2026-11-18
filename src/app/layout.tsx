@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { connection } from 'next/server'
 import './globals.css'
 import './notes/notes.css'
+import './daily.css'
 
 export const metadata: Metadata = {
   title: 'Daily — Lịch và công việc',
